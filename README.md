@@ -21,7 +21,7 @@ GitHub Pages only hosts static files, so this build always uses **demo data**. T
 
 Open the **full preview** URL above and check:
 
-- [ ] The panel shows the sample page title and path (`/en/journal/the-art-of-slow-mornings`) and a **Demo data** label.
+- [ ] The panel footer shows a **Demo data** label.
 - [ ] Four metric cards render: Page views, Unique visitors, Visits, Bounce rate.
 - [ ] Switching the range picker between **7 / 30 / 90 days** updates the metrics, date range and chart.
 - [ ] Toggling **Compare to previous period** shows/hides change indicators. Bounce-rate change is shown in percentage points (`pts`).
@@ -47,8 +47,8 @@ You need edit access to an Experience Workspace (da.live) site.
 
 3. Save, then open any document: `https://da.live/edit#/{ORG}/{SITE}/{DOCUMENT_PATH}`.
 4. Open the Library/tools panel and select **Page insights**.
-5. Verify the panel header shows the **path of the document you are editing** (from the Workspace SDK `context.path`). The metrics remain demo values on the Pages build.
-6. Open a different document and reopen the plugin; the path should update.
+5. Verify the panel loads metrics without a context error. The metrics remain demo values on the Pages build; the exported CSV's `Page` row shows the document path received from the Workspace SDK (`context.path`).
+6. Open a different document, reopen the plugin and export again; the path should update.
 
 If the panel reports that the Workspace context is unavailable, confirm the plugin was opened from Workspace (not a separate tab) and check the browser console for iframe or SDK errors.
 

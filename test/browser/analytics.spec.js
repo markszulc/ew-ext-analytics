@@ -99,8 +99,6 @@ test('iframe receives current page context through the real SDK handshake', asyn
     }, location.origin, [channel.port2]);
     window.testPort = channel.port1;
   });
-  await expect(frame.locator('.page-context strong')).toHaveText('Single Origin');
-  await expect(frame.locator('.page-path')).toHaveText('/products/single-origin');
   await expect(frame.locator('.metric-card')).toHaveCount(4);
-  await expect(frame.locator('.context-label')).toHaveText('CURRENT PAGE');
+  await expect.poll(() => frame.locator('analytics-app').evaluate((app) => app.page.path)).toBe('/products/single-origin');
 });
