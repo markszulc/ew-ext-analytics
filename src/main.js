@@ -278,7 +278,6 @@ class AnalyticsApp extends LitElement {
     last.setUTCDate(last.getUTCDate() - 1);
     const noData = this.report && this.report.current.pageviews === 0;
     return html`<aside class="insights-panel" aria-label="Page insights">
-      <div class="panel-top"><div class="panel-name">${icon('chart')}<h1>Page insights</h1></div><sp-action-button quiet aria-label="Data connection settings" title="Data connection settings" @click=${() => this.querySelector('dialog').showModal()}>${icon('settings')}</sp-action-button></div>
       <div class="panel-scroll">
         <div class="page-context"><span class="page-document-icon">${icon('document')}</span><div><span class="context-label">${this.embedded && window.parent !== window ? 'CURRENT PAGE' : 'EXAMPLE PAGE'}</span><strong>${this.page.title}</strong><span class="page-path" title=${this.page.path}>${this.page.path}</span></div><span class="context-indicator" title="Page-level report"></span></div>
         ${this.contextError ? html`<div class="error-banner" role="alert">${icon('info')}<span>${this.contextError}</span></div>` : nothing}
@@ -298,7 +297,7 @@ class AnalyticsApp extends LitElement {
           ` : nothing}
         </div>
       </div>
-      <footer class="panel-footer"><button class="source-button" @click=${() => this.querySelector('dialog').showModal()}><span class="status-dot ${this.mode === 'live' ? 'connected' : ''}"></span><span>${this.mode === 'demo' ? 'Demo data' : 'Adobe Analytics'}<small>${this.mode === 'demo' ? 'Connect your report suite' : this.report?.suite || this.connection.suite}</small></span>${icon('chevron')}</button><sp-action-button quiet aria-label="Export report as CSV" title="Export report as CSV" ?disabled=${!this.report || this.loading || Boolean(this.error)} @click=${this.exportReport}>${icon(this.exported ? 'check' : 'download')}</sp-action-button></footer>
+      <footer class="panel-footer"><button class="source-button" aria-label="Data connection settings" title="Data connection settings" @click=${() => this.querySelector('dialog').showModal()}><span class="status-dot ${this.mode === 'live' ? 'connected' : ''}"></span><span>${this.mode === 'demo' ? 'Demo data' : 'Adobe Analytics'}<small>${this.mode === 'demo' ? 'Connect your report suite' : this.report?.suite || this.connection.suite}</small></span>${icon('chevron')}</button><sp-action-button quiet aria-label="Export report as CSV" title="Export report as CSV" ?disabled=${!this.report || this.loading || Boolean(this.error)} @click=${this.exportReport}>${icon(this.exported ? 'check' : 'download')}</sp-action-button></footer>
       <span class="sr-only" role="status">${this.exported ? 'Report exported as CSV.' : ''}</span>
     </aside>`;
   }
